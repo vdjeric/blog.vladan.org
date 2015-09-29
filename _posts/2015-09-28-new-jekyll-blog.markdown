@@ -20,7 +20,7 @@ If anyone is interested in migrating their blog from WordPress to Jekyll or Octo
 1. Further fixed up the posts to correct links etc
 1. Lots of debugging and learning of Jekyll, Ruby package management (Gem and Bundler), SCSS, GitHub Pages, Disqus quirks, my DNS provider, etc :)
 
-I think the process would have been simpler if I had admin privileges on the WordPress deployment -- I came across WordPress export plugins and scripts that needed admin rights to deploy. This would have made the migration more automatic.
+I think the process would have been simpler if I had admin privileges on the WordPress deployment -- I came across WordPress plugins and scripts for exporting that needed admin rights to deploy. This would have made the migration more automatic.
 
 I also looked into [Octopress](http://octopress.org/docs/). I didn't like Octopress 2 ([for these kinds of reasons](http://octopress.org/2015/01/15/octopress-3.0-is-coming/)) and I found Octopress 3 unfinished & not well documented, which is understandable, since it's not officially released yet.
 
