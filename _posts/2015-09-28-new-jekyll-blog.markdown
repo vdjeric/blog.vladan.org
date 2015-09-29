@@ -24,4 +24,4 @@ I think the process would have been simpler for a blogger with admin privileges 
 
 I also looked into [Octopress](http://octopress.org/docs/). I didn't like Octopress 2 ([for these kinds of reasons](http://octopress.org/2015/01/15/octopress-3.0-is-coming/)) and I found Octopress 3 unfinished & not well documented, which is understandable, since it's not officially released yet.
 
-Jekyll and GitHub Pages aren't perfect either (Jekyll can take a while to re-generate a simple site, GH Pages produces unhelpful "Page build failed" errors, etc), but this migration has been a different kind of challenge and I enjoyed figuring out all the little bugs that kept cropping up.
+Jekyll and GitHub Pages aren't perfect either (Jekyll can take a while to re-generate a simple site, GH Pages produces unhelpful "Page build failed" errors, etc), but this migration has been a different kind of challenge and I enjoyed figuring out all the little bugs that popped up.
