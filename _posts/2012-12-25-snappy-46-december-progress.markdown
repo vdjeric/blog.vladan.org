@@ -1,0 +1,22 @@
+---
+author: Vladan
+comments: true
+date: 2012-12-25
+layout: post
+slug: snappy-46-december-progress
+title: 'Snappy #46: December Progress'
+wordpress_id: 92
+---
+Taras is on vacation this month, so I'm filling in with a Snappy progress update. Taras also has a mini-update on his new blog: [Snappy #45: The View From Home](http://taras.glek.net/blog/2012/12/21/interesting-bugzilla-activity/).
+
+We are working hard on improving Firefox [start up](https://bugzilla.mozilla.org/show_bug.cgi?id=810156) and [shut down](https://bugzilla.mozilla.org/show_bug.cgi?id=819063) and much of the work is being done with the help of the new startup & shutdown profiling modes in [Benoit Girard's profiler](https://github.com/bgirard/Gecko-Profiler-Addon/). In general, we are finding that GC and CC make up a significant fraction of shutdown time. The ongoing [exit(0)](https://bugzilla.mozilla.org/show_bug.cgi?id=662444) project is going to be the biggest win for shutdowns, but startup times will likely require many smaller improvements. We also seem to be up against against a gradual and relentless increase in startup times with each release ([bug 818257](https://bugzilla.mozilla.org/show_bug.cgi?id=818257)). This may be a consequence of increased code size and our decision to load all of xul.dll on startup.
+
+Over the past month, several patches have landed aiming to improve startup times, but we can't quantify the user benefits until the server-side bucketing of Telemetry measurements becomes more fine-grained ([bug 778809](https://bugzilla.mozilla.org/show_bug.cgi?id=778809)). David Teller made improvements to startup by moving the reading of the session file ([bug 532150](https://bugzilla.mozilla.org/show_bug.cgi?id=532150)) and the search bar metadata ([bug 760036](https://bugzilla.mozilla.org/show_bug.cgi?id=760036)) off the main thread. Aaron Klotz landed a patch ([bug 810101](https://bugzilla.mozilla.org/show_bug.cgi?id=810101)) to read the SafeBrowsing _.sbstore_ and _.cache_ files with the "read-ahead" flag. These files total several megabytes and Aaron's local testing showed a 50ms reduction in file read times. He also discovered that the ._sbstore_ files get read shortly after startup when we first try to open an HTTP channel.
+
+On the shutdown side, Benoit Girard landed code to skip the destruction of cross-compartment wrappers during exit ([bug 818296](https://bugzilla.mozilla.org/buglist.cgi?quicksearch=818296)). He also landed another change ([bug 816656](https://bugzilla.mozilla.org/show_bug.cgi?id=816656)) to prevent flushing of the startup cache to disk while shutting down a brief session. Olli Pettay's [bug 818739](https://bugzilla.mozilla.org/show_bug.cgi?id=818739) stopped the Cycle Collector from being run on shutdown in non-debug builds.
+
+There were also a couple of general responsiveness patches deserving mention: Vladimir Vukicevic landed [bug 731974](https://bugzilla.mozilla.org/show_bug.cgi?id=731974) which promises to considerably improve the smoothness of UI animations, Rafael Espindola moved the reading of a Telemetry data file off the main thread ([bug 815709](https://bugzilla.mozilla.org/show_bug.cgi?id=815709)) and Drew Willcoxon refactored the content pref service to use async storage ([bug 699859](https://bugzilla.mozilla.org/show_bug.cgi?id=699859)).
+
+James Abbatiello, an external contributor, wrote an extension to track tab switch times to help us identify pages we don't handle well. The extension adds the last switch time (in milliseconds) to tab titles and shows a full list in an "about:tabswitch" page.  If you're interested in helping us identify problematic pages, install the [Addon Builder Helper](https://addons.mozilla.org/en-US/firefox/addon/add-on-builder-helper/) and the [current draft of James's extension](https://builder.addons.mozilla.org/package/162308/) and consider filing bugs for any URLs which consistently require more than 50ms.
+
+Lastly, I moved [LocalStorage writes off the main thread,](https://bugzilla.mozilla.org/show_bug.cgi?id=807021) which ought to provide a relief from a major source of UI unresponsiveness. LocalStorage has been a top source of slow main-thread SQL for a long time: [http://bit.ly/WEOwPC](http://bit.ly/WEOwPC) (sort "Latest Changes" section by "Total Sum" column). Honza Bambas is working on a full re-write of LocalStorage ([bug 600307](https://bugzilla.mozilla.org/show_bug.cgi?id=600307)) which also adds pre-fetching.

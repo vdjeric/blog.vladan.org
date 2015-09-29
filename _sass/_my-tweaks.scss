@@ -1,0 +1,10 @@
+span {
+    &.emphasize {
+        color: red;
+        font-weight: bold;
+    }
+}
+
+sup.note {
+    text-decoration: underline
+}

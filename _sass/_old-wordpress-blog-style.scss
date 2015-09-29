@@ -1,0 +1,58 @@
+/**
+ * Table styling from my old Wordpress blog
+ */
+
+.oldblog {
+    /**
+     * Reset default browser CSS.
+     * Adapted from: http://wordpress.org/extend/themes/coraline/
+     * The Wordpress theme is based on work by Eric Meyer:
+     * http://meyerweb.com/eric/tools/css/reset/index.html
+     */
+    caption, table, tbody, tfoot, thead, tr, th, td {
+        border: 0;
+        font-family: inherit;
+        font-style: inherit;
+        font-weight: inherit;
+        margin: 0;
+        outline: 0;
+        padding: 0;
+        vertical-align: baseline;
+    }
+
+    table {
+        border: 1px solid #ccc;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin: 0 -1px 24px 0;
+        text-align: left;
+    }
+
+    hr {
+        background-color: #ccc;
+        border: 0;
+        height: 1px;
+        margin-bottom: 1.7em;
+    }
+
+    caption, th, td {
+        font-weight: normal;
+        text-align: left;
+    }
+
+    tr th, thead th {
+        /* font: 12px "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", sans-serif; */
+        font-weight: bold;
+        line-height: 18px;
+        padding: 9px 12px;
+    }
+
+    tr td {
+        border-top: 1px solid #ccc;
+        padding: 6px 12px;
+    }
+
+    tr.odd td {
+    	background: #f2f7fc;
+    }
+}
