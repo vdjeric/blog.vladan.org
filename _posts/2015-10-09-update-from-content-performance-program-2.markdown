@@ -42,7 +42,7 @@ We tested many more use cases since the previous progress update, but we mostly 
 * Firefox\'s scrolling performance did not regress on Windows 10 as compared to Windows 8 (for the 3 reference sites: Yahoo, Facebook and Twitter)
 * Most gfx configurations did not hurt Firefox scrolling performance: external monitor connected, DPI scaling enabled, e10s enabled (comparing non-APZ e10s vs non-e10s), accessibility technology enabled, etc
     * In tests with external monitors, we noticed that Firefox consistently chooses the correct refresh rate, unlike other tested browsers
-    * Unfortunately, this finding did not generalize to better gfx performance overall on all multi-monitor setups
+    * Unfortunately, this finding did not generalize to better gfx performance overall on all multi-monitor setups ([bug 1189955](https://bugzilla.mozilla.org/show_bug.cgi?id=1189955))
 * We also found page-loading times on Facebook, Twitter, and Yahoo comparable across browsers
 * As an aside, APZC has a noticeably positive impact on scrolling smoothness, but there are issues with checkerboarding and correctness ([bug 1178298]((https://bugzilla.mozilla.org/show_bug.cgi?id=1178298)), so it might be a while before we see APZC riding the trains.
 
