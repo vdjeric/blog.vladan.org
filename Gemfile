@@ -1,16 +1,16 @@
 source 'https://rubygems.org'
 
-# Pin to whatever GitHub Pages currently runs: https://pages.github.com/versions/
-# Update with `bundle update github-pages`.
-gem 'github-pages', group: :jekyll_plugins
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
+gem 'jekyll'
 
-# No longer bundled with Ruby 3.0+, needed by `jekyll serve`
-gem 'webrick'
+# Always use current version of Github's github-pages pages
+require 'json'
+require 'open-uri'
+versions = JSON.parse(open('https://pages.github.com/versions.json').read)
+gem 'github-pages', versions['github-pages']
 
-# Windows and JRuby don't ship zoneinfo files
-platforms :mingw, :x64_mingw, :mswin, :jruby do
-  gem 'tzinfo', '>= 1', '< 3'
-  gem 'tzinfo-data'
-end
+# Plugins
+gem 'jekyll-sitemap'
+# Uncomment this plugin once this issue is fixed (very soon): https://github.com/sparklemotion/nokogiri/issues/1256
+#gem 'jemoji'
 
-gem 'wdm', '~> 0.1', platforms: [:mingw, :x64_mingw, :mswin]
